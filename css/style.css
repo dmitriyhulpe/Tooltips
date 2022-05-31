@@ -1,0 +1,139 @@
+body
+{
+    font-family: 'Arial';
+    line-height: 1;
+
+    height: 100vh;
+}
+
+*,
+*:before,
+*:after
+{
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 40px;
+}
+
+.button
+{
+    cursor: pointer;
+    white-space: nowrap;
+    border: none;
+    outline: none;
+
+    color: #fff;
+    background-color: #21262b;
+
+    border-radius: 5px;
+    padding: 10px;
+
+    font-weight: 700;
+}
+
+*[data-tooltip] {
+    position: relative;
+}
+
+*[data-tooltip]::after {
+    position: absolute;
+    content: attr(data-tooltip);
+    white-space: nowrap;
+
+    background: #21262b;
+    color: #fff;
+
+    border-radius: 5px;
+    padding: 5px;
+
+    font-weight: 400;
+    z-index: 10;
+}
+
+*[data-tooltip]::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #21262b;
+    position: absolute;
+}
+
+*[data-tooltip][data-tooltip-position="left"]::after {
+    right: 100%;
+    top: 50%;
+    transform: translate(-5px, -50%);
+}
+
+*[data-tooltip][data-tooltip-position="left"]::before {
+    top: 50%;
+    left: -17.5px;
+    transform: rotate(45deg) translate(0, -50%);
+}
+
+*[data-tooltip][data-tooltip-position="top"]::after {
+    left: 50%;
+    top: -35px;
+    transform: translate(-50%, 5px);
+}
+
+*[data-tooltip][data-tooltip-position="top"]::before {
+    top: -10px;
+    left: 50%;
+    transform: rotate(45deg) translate(-50%, 0);
+}
+
+*[data-tooltip][data-tooltip-position="bottom"]::after {
+    bottom: -35px;
+    left: 50%;
+    transform: translate(-50%, -5px);;
+}
+
+*[data-tooltip][data-tooltip-position="bottom"]::before {
+    bottom: -17.5px;
+    left: 50%;
+    transform: rotate(45deg) translate(-50%, 0);
+}
+
+*[data-tooltip][data-tooltip-position="right"]::after {
+    left: 100%;
+    top: 50%;
+    transform: translate(5px, -50%);
+}
+
+*[data-tooltip][data-tooltip-position="right"]::before {
+    top: 50%;
+    right: -10px;
+    transform: rotate(45deg) translate(0, -50%);
+} 
+
+*[data-tooltip]::before,
+*[data-tooltip]::after {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+*[data-tooltip]:hover::before,
+*[data-tooltip]:hover::after {
+    visibility: visible;
+}
+
+@media(max-width: 992px) {
+    .container {
+        flex-direction: column;
+    }
+}
